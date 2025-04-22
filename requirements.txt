@@ -3,3 +3,27 @@ flask-cors==4.0.0
 numpy==1.24.3
 opencv-python==4.8.0.76
 deepface==0.0.79
+
+flask
+flask-cors
+deepface
+opencv-python-headless
+tensorflow
+
+
+# Use official Python image
+FROM python:3.9-slim
+
+# Set working directory
+WORKDIR /app
+
+# Copy requirements and install
+COPY requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt
+
+# Copy the rest of the app
+COPY . .
+
+# Expose port and start the app
+EXPOSE 5000
+CMD ["python", "app.py"]
